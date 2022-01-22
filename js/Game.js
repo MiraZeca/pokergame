@@ -8,20 +8,20 @@ class Game {
         this.finalCards = [];
     }
     init() {
-        this.btn.addEventListener('click',()=> this.flip());
+        this.btn.addEventListener('click', () => this.flip());
     }
 
     flip() {
         (this.round === 1) ? this.round = 2 : this.round = 1;
-        if (this.round === 1){
+        if (this.round === 1) {
             this.removeAllSelected();
         }
         this.btn.innerHTML = "Start " + this.round;
         this.cardIndex = 0;
         this.turnOnBack();
     }
-    removeAllSelected(){
-        document.querySelectorAll('.selected').forEach(div=>{
+    removeAllSelected() {
+        document.querySelectorAll('.selected').forEach(div => {
             div.classList.remove('selected');
         })
     }
@@ -37,14 +37,14 @@ class Game {
         setTimeout(() => {
             this.shuffleCards();
             this.reveal();
-        },100);
+        }, 100);
     }
     reveal() {
         let cardFront = this.cards[this.cardIndex].querySelector('.front:not(.selected)');
         let cardBack = this.cards[this.cardIndex].querySelector('.back');
         if (cardFront) {
             this.finalCards[this.cardIndex] = this.randomFiveCards[this.cardIndex];
-            cardFront.children[0].setAttribute('src',this.getImage());
+            cardFront.children[0].setAttribute('src', this.getImage());
             cardFront.onclick = function () {
                 cardFront.classList.toggle('selected');
             }
@@ -55,7 +55,7 @@ class Game {
                 if (this.cardIndex < this.cards.length) {
                     this.reveal();
                 }
-            },100);
+            }, 100);
         } else {
             this.cardIndex++;
             if (this.cardIndex < this.cards.length) {
@@ -64,7 +64,7 @@ class Game {
         }
     }
     getImage() {
-        return "img/"+this.randomFiveCards[this.cardIndex].sign+"_"+this.randomFiveCards[this.cardIndex].value+".png";
+        return "img/" + this.randomFiveCards[this.cardIndex].sign + "_" + this.randomFiveCards[this.cardIndex].value + ".png";
     }
     shuffleCards() {
         this.randomFiveCards = deck.fiveRandomCards();
