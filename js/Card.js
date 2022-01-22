@@ -2,7 +2,7 @@ class Card {
     sign;
     value;
     constructor(sign,value) {
-        this.sign = this.sign;
+        this.sign = sign;
         this.value = value;
     }
     getCard(){
