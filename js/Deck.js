@@ -1,5 +1,6 @@
 class Deck {
     cards;
+    cardsCopy;
     constructor(cards){
         this.cards = cards;
         this.cardsCopy = [].concat(this.cards);
